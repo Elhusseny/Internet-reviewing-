@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>شكراً</title>
+    <style>
+        body { text-align: center; margin-top: 100px; font-family: Arial; direction: rtl; }
+    </style>
+</head>
+<body>
+<h2 id="msg">شكراً على المشاركة</h2>
+<script>
+const username = localStorage.getItem("currentUser") || "يا فندم";
+document.getElementById("msg").textContent = "شكراً يا " + username + " على مشاركتك معنا.";
+</script>
+</body>
+</html>

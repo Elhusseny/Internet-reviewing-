@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>استطلاع الرأي</title>
+    <style>
+        body { text-align: center; font-family: Arial; margin-top: 100px; direction: rtl; }
+        input[type="text"] { padding: 10px; width: 300px; }
+        button { padding: 10px 20px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+<h2>أهلاً بك في استطلاع الرأي الخاص بـ <strong>رضا المستخدمين عن استخدام الإنترنت في مصر</strong></h2>
+<form onsubmit="startSurvey(event)">
+    <label for="username">الاسم:</label><br>
+    <input type="text" id="username" required><br>
+    <button type="submit">ابدأ الأسئلة</button>
+</form>
+
+<script>
+function startSurvey(e) {
+    e.preventDefault();
+    const username = document.getElementById("username").value.trim();
+    if (!username) return;
+    localStorage.setItem("currentUser", username);
+    let users = JSON.parse(localStorage.getItem("users") || "[]");
+    if (!users.includes(username)) {
+        users.push(username);
+        localStorage.setItem("users", JSON.stringify(users));
+    }
+    window.location.href = "survey.html";
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>الإجابات</title>
+    <style>
+        body { direction: rtl; font-family: Arial; padding: 20px; background: #f5f5f5; }
+        h2 { text-align: center; margin-bottom: 30px; }
+        .user-block { margin-bottom: 30px; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 0 5px #ccc; }
+        .username { font-size: 20px; font-weight: bold; margin-bottom: 10px; color: #333; }
+        .question { font-weight: bold; margin: 10px 0 5px; }
+        .answer { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+<h2>كل الإجابات من المشاركين</h2>
+<div id="allAnswers"></div>
+
+<script>
+const questions = [
+    "ما نوع خدمة الإنترنت التي تستخدمها؟",
+    "هل سرعة الإنترنت مرضية بالنسبة لك؟",
+    "هل تواجه انقطاعات متكررة؟",
+    "ما مدى استقرار الخدمة؟",
+    "هل خدمة العملاء فعالة؟",
+    "ما رأيك في الأسعار؟",
+    "هل جربت مزودين آخرين؟",
+    "هل لديك اقتراحات؟",
+    "هل الإنترنت كافي لاحتياجاتك؟",
+    "تقييمك من 1 لـ 10؟"
+];
+
+const users = JSON.parse(localStorage.getItem("users") || "[]");
+const container = document.getElementById("allAnswers");
+
+users.forEach(username => {
+    const block = document.createElement("div");
+    block.className = "user-block";
+    block.innerHTML = `<div class="username">${username}</div>`;
+    questions.forEach((q, i) => {
+        const answer = localStorage.getItem(username + "_answer" + (i+1)) || "—";
+        block.innerHTML += `<div class="question">${q}</div><div class="answer">${answer}</div>`;
+    });
+    container.appendChild(block);
+});
+</script>
+</body>
+</html>
